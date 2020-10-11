@@ -14,14 +14,14 @@ exports.sequelizeErrorHandler = (err, req, res, next) => {
     next(err);
 };
 exports.errorHandler = (err, req, res, next) => {
-    if (res.headerSent) {
+    if (res.headersSent) {
         return;
     }
     res.status(err?.status ?? 500).send({
         data: null,
         errors: [
             {
-                title: err?.massage ?? err,
+                title: err?.message ?? err,
             },
         ],
     });
